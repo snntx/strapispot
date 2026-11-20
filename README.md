@@ -2,6 +2,8 @@
 
 A Spotlight / Raycast-style command palette for the **Strapi 5** admin panel.
 
+> **Status: early release (0.1.0), not on npm yet.** Until it is published, install it from a tarball you build yourself; see [Install](#install).
+
 Press **Cmd/Ctrl + Shift + K** on any admin page, type, and jump to the entry you want, or to the screen where you create a new one. Everything works from the keyboard.
 
 - **Search everything.** Plain text searches every collection you are allowed to read. Results are ranked, and the text that matched is highlighted.
@@ -20,17 +22,36 @@ Strapispot sends no data anywhere except to your own Strapi server. There is no 
 
 ## Install
 
+Strapispot is **not published to npm yet**, so `npm install strapi-plugin-strapispot` does not work for now. Build a package from this repository and install that:
+
+```bash
+# 1. Build the package (once, in a copy of this repository)
+git clone https://github.com/snntx/strapispot.git
+cd strapispot
+npm install
+npm run build
+npm pack            # creates strapi-plugin-strapispot-0.1.0.tgz
+
+# 2. Install it in your Strapi 5 project
+cd /path/to/your-strapi-project
+npm install /path/to/strapispot/strapi-plugin-strapispot-0.1.0.tgz
+```
+
+Installing straight from GitHub (`npm install github:snntx/strapispot`) does not work, because the built files are not stored in the repository.
+
+Once the package is on npm, the install will be:
+
 ```bash
 npm install strapi-plugin-strapispot
 ```
 
-Then rebuild the admin panel:
+Then rebuild the admin panel and restart Strapi:
 
 ```bash
 npm run build   # or: npm run develop
 ```
 
-A plugin installed from npm is picked up automatically. If you prefer to be explicit, add this to `config/plugins.ts`:
+A plugin installed into `node_modules` is picked up automatically. If you prefer to be explicit, add this to `config/plugins.ts`:
 
 ```ts
 export default {
