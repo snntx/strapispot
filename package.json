@@ -1,0 +1,96 @@
+{
+  "version": "0.1.0",
+  "keywords": [
+    "strapi",
+    "strapi-plugin",
+    "strapi-v5",
+    "strapi-admin",
+    "command-palette",
+    "spotlight",
+    "search",
+    "keyboard"
+  ],
+  "type": "commonjs",
+  "exports": {
+    "./package.json": "./package.json",
+    "./strapi-admin": {
+      "types": "./dist/admin/src/index.d.ts",
+      "source": "./admin/src/index.ts",
+      "import": "./dist/admin/index.mjs",
+      "require": "./dist/admin/index.js",
+      "default": "./dist/admin/index.js"
+    },
+    "./strapi-server": {
+      "types": "./dist/server/src/index.d.ts",
+      "source": "./server/src/index.ts",
+      "import": "./dist/server/index.mjs",
+      "require": "./dist/server/index.js",
+      "default": "./dist/server/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "strapi-plugin build",
+    "watch": "strapi-plugin watch",
+    "watch:link": "strapi-plugin watch:link",
+    "verify": "strapi-plugin verify",
+    "test:ts:front": "tsc -p admin/tsconfig.json",
+    "test:ts:back": "tsc -p server/tsconfig.json --noEmit",
+    "test": "tsc -p tsconfig.test.json && node --test \".test-build/tests/*.test.js\"",
+    "prepublishOnly": "npm run test:ts:front && npm run test:ts:back && npm test && npm run build && npm run verify"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@strapi/strapi": "^5.63.0",
+    "@strapi/sdk-plugin": "^6.1.1",
+    "prettier": "^3.10.1",
+    "@strapi/design-system": "^2.3.1",
+    "@strapi/icons": "^2.3.1",
+    "react-intl": "^6.8.9",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.6",
+    "styled-components": "^6.6.0",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@strapi/typescript-utils": "^5.63.0",
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "@strapi/strapi": "^5.0.0",
+    "@strapi/design-system": "^2.0.0",
+    "@strapi/icons": "^2.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "styled-components": "^6.0.0"
+  },
+  "strapi": {
+    "kind": "plugin",
+    "name": "strapispot",
+    "displayName": "Strapispot",
+    "description": "Spotlight-style command palette for the Strapi admin panel"
+  },
+  "name": "strapi-plugin-strapispot",
+  "description": "Spotlight-style command palette for the Strapi 5 admin panel: search every collection, search inside one, and jump to create screens, all from the keyboard.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snntx/strapispot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/snntx/strapispot/issues"
+  },
+  "homepage": "https://github.com/snntx/strapispot#readme",
+  "author": "snntx <kushan.ekanayake@surge.global>",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
